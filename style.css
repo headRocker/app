@@ -1,0 +1,244 @@
+:root {
+  font-family: "Inter", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #171819;
+  color: #fff;
+}
+
+#app {
+  width: 100%;
+  height: 100vh;
+  max-width: 460px;
+  max-height: 1000px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.9);
+  position: relative;
+  overflow: hidden;
+}
+
+#image-bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  object-position: center;
+}
+
+.content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 24px;
+  padding: 64px 0px;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.location {
+  font-weight: 800;
+  font-size: 44px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  text-transform: uppercase;
+}
+.date {
+  font-weight: 700;
+  font-size: 16px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+.temperature-big {
+  font-weight: 900;
+  font-size: 96px;
+  letter-spacing: -0.05em;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+.divider {
+  width: 250px;
+  height: 2px;
+  background: #fff;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.25);
+}
+.weather-type {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+}
+
+.weather-type div {
+  font-weight: 700;
+  font-size: 32px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+.footer {
+  display: flex;
+  align-items: space-between;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 110px;
+  padding: 40px 50px 2px 50px;
+}
+.footer div {
+  display: flex;
+  align-items: center;
+  justify-content: spa;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 12px;
+}
+.footer div i {
+  font-size: 24px;
+}
+.footer div span {
+  font-weight: 700;
+  font-size: 12px;
+}
+
+button {
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.overlay-btn {
+  width: 200px;
+  height: 100px;
+  position: absolute;
+  left: 50%;
+  bottom: -50px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
+  clip-path: polygon(0 0, 100% 0, 100% 50px, 0 50px);
+  backdrop-filter: blur(15px);
+  background: rgba(255, 255, 255, 0.67);
+  transition: 300ms ease;
+}
+.overlay-btn i {
+  font-size: 24px;
+  transition: 300ms ease;
+}
+.overlay-btn.open {
+  bottom: 282px;
+}
+.overlay-btn.open i {
+  transform: rotate(180deg);
+}
+.overlay-locations.open {
+  bottom: 0px;
+}
+.overlay-locations {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 24px;
+  overflow-y: auto;
+  bottom: -332px;
+  border-radius: 16px 16px 0 0;
+  padding: 16px 24px;
+  width: 100%;
+  height: 332px;
+  backdrop-filter: blur(15px);
+  background: rgba(255, 255, 255, 0.67);
+  position: absolute;
+  transition: 300ms ease;
+}
+
+.overlay-locations button {
+  font-weight: 700;
+  font-size: 16px;
+  color: #000;
+  .loader {
+    width: 48px;
+    height: 48px;
+    position: relative;
+    perspective: 500px;
+  }
+}
+.preloader {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #111010;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 6rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  animation: pulsOut 1.8s ease-in-out infinite;
+  filter: drop-shadow(0 0 1rem rgba(255, 255, 255, 0.75));
+}
+.loader:before {
+  width: 100%;
+  padding-bottom: 100%;
+  box-shadow: inset 0 0 0 1rem #fff;
+  animation-name: pulsIn;
+}
+.loader:after {
+  width: calc(100% - 2rem);
+  padding-bottom: calc(100% - 2rem);
+  box-shadow: 0 0 0 0 #fff;
+}
+
+@keyframes pulsIn {
+  0% {
+    box-shadow: inset 0 0 0 1rem #fff;
+    opacity: 1;
+  }
+  50%,
+  100% {
+    box-shadow: inset 0 0 0 0 #fff;
+    opacity: 0;
+  }
+}
+
+@keyframes pulsOut {
+  0%,
+  50% {
+    box-shadow: 0 0 0 0 #fff;
+    opacity: 0;
+  }
+  100% {
+    box-shadow: 0 0 0 1rem #fff;
+    opacity: 1;
+  }
+}
